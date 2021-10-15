@@ -12,12 +12,12 @@ const App = () => {
 
   useEffect(() => {
     fetchProduct();
-  }, [])
+  }, [])  // runs for first time only
   console.log(products);
   return (
     <div>
-      <Navbar/>
-      <Products/>
+      <Navbar products={products} />
+      <Products products={products}/>
     </div>
   )
 }

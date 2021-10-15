@@ -9,16 +9,15 @@ import {AddShoppingCart} from '@material-ui/icons'
 
 import useStyle from './style'
 
-const Product = (props) => {
-  const {product} = props;
+const Product = ({ product }) => {
   const classes = useStyle();
   
   return (
     <Card className={classes.root}>
       <CardMedia className={classes.media} 
-      image='' 
+      // image='' 
       title={product.name}
-      image={product.image}
+      image={product.image.url}
       />
 
       <CardContent>
@@ -27,12 +26,10 @@ const Product = (props) => {
             {product.name}
           </Typography>
           <Typography variant="h5">
-            {product.price}
+            {product.price.formatted_with_symbol}
           </Typography>
         </div>
-        <Typography variant="body2" color="textSecondary">
-          {product.description}
-        </Typography>
+        <Typography dangerouslySetInnerHTML={{ __html: product.description }} variant="body2" color="textSecondary" />
       </CardContent>
       <CardActions disableSpacing className={classes.cardActions}>
         <IconButton aria-label="Add to Cart">
