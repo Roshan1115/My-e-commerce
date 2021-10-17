@@ -26,4 +26,14 @@ export default makeStyles((theme) => ({
     width: '100%',
     justifyContent: 'space-between',
   },
+  allign: {
+    textAlign: 'right'
+  }, 
+  ButtonForSmall: {
+      ['@media (max-width:500px)']: {
+        fontSize: '0.7rem',
+        // backgroundColor: 'yellow',
+      },
+    },
+ 
 }));
