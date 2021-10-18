@@ -125,7 +125,12 @@ const Checkout = ({ cart,order,handleCheckout,errorMessage,refreshCart }) => {
               </Step>
             ))}
           </Stepper>
-          { activeStep === steps.length ? <Confirmation /> : (checkoutToken && <Form />)  }   
+          { activeStep === steps.length ? <Confirmation /> : (checkoutToken ?   
+          <Form />  :
+          <div className={classes.spinner}>
+            <CircularProgress />
+           </div> 
+          )}   
           {/* form will show only afater checkoutToken will appear */}
           
         </Paper>
