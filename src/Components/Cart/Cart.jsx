@@ -19,7 +19,7 @@ const Cart = ({ cart,HandleUpdateQty,HandleRemoveItem,HandleEmptyCart }) => {
     <>
     <Grid container spacing={3}>
       {cart.line_items.map((item) => (
-        <Grid item xs={12} sm={4}>
+        <Grid item xs={12} sm={4} key={item.id}>
           <CartItem 
           key={item.id}
           item={item} 
