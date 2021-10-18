@@ -6,6 +6,8 @@ import {BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 const App = () => {
   const [products, setproducts] = useState([]);
   const [cart, setcart] = useState({});
+  const [order, setOrder] = useState({});
+  const [errMsg, seterrMsg] = useState('');
 
   const fetchProduct = async () => {
     const {data} = await commerce.products.list();
@@ -38,6 +40,25 @@ const App = () => {
     setcart(item.cart);
   }
 
+  const refreshCart = async () => {
+    const newCart = await commerce.cart.refresh();
+    setcart(newCart); 
+  }
+
+  const handleCheckout = async (checkoutTokenID, newOrder) => {
+    try{
+      const incomeOrder = await commerce.capture(checkoutTokenID, 
+      newOrder)
+      setOrder(incomeOrder);
+      refreshCart();
+
+    }catch(err){
+      // console.log(err)
+      seterrMsg(err.data.error.message)
+    }
+  }
+
+
   useEffect(() => {
     fetchProduct();
     fetchCart();
@@ -68,7 +89,13 @@ const App = () => {
         </Route>
 
         <Route exact path="/checkout">
-          <Checkout cart={cart} />
+          <Checkout 
+            cart={cart} 
+            order={order}
+            handleCheckout={handleCheckout}
+            errorMessage={errMsg}
+            refreshCart={refreshCart}
+            />
         </Route>
       </Switch>
     </div>

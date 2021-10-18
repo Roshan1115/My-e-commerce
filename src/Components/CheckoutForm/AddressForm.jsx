@@ -6,8 +6,9 @@ import {FormProvider, useForm} from 'react-hook-form'
 import CustomTextField from './CustomTextField'
 import {commerce} from '../../lib/commerce'
 import {Link} from 'react-router-dom'
+import { logDOM } from '@testing-library/react'
 
-const AddressForm = ({ checkoutToken }) => {
+const AddressForm = ({ checkoutToken,Sdata }) => {
 
   const [ShippingCountries, setShippingCountries] = useState([])
   const [shippingCounty, setshippingCounty] = useState('')
@@ -107,7 +108,14 @@ const AddressForm = ({ checkoutToken }) => {
     <>
     <Typography variant="h6" gutterBottom>Shopping Address</Typography>
     <FormProvider {...methodes}>
-      <form onSubmit=''>
+      <form onSubmit={methodes.handleSubmit((data) => {
+        Sdata( {
+          ...data,
+          shippingCounty,
+          Subdivision,
+          ShippingOption
+        } )
+      })}>
         <Grid container spacing={3}>
           <CustomTextField required name='firstName' label='First Name' />
           <CustomTextField required name='lastName' label='Last Name' />
@@ -165,7 +173,7 @@ const AddressForm = ({ checkoutToken }) => {
       
           <div style={{width: "100%", display: "flex", justifyContent: "space-between"}}>
             <Button variant="outlined" component={Link} to="/cart">Back to cart</Button>
-            <Button variant="contained" color="primary">Proceed</Button>
+            <Button type="submit" variant="contained" color="primary">Proceed</Button>
           </div>
 
         </Grid>
