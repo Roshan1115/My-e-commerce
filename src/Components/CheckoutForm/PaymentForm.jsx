@@ -7,7 +7,8 @@ import {
 import {
   Elements, 
   CardElement, 
-  ElementsConsumer} from '@stripe/react-stripe-js'
+  ElementsConsumer,
+  } from '@stripe/react-stripe-js'
 import {loadStripe} from '@stripe/stripe-js'
 import Review from './Review'
 
@@ -17,7 +18,6 @@ const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PUBLIC_KEY);
 
 
 const PaymentForm = ({checkoutToken, backStep, ShipData, handleCheckout,nextSte,timeout,refreshCart }) => {
-
 
   const handleSubmit = async (e, elements, stripe) => {
     e.preventDefault();
@@ -72,19 +72,24 @@ const PaymentForm = ({checkoutToken, backStep, ShipData, handleCheckout,nextSte,
 
     <Elements stripe={stripePromise}>
       <ElementsConsumer>
-        {({ elements, stripe }) => {
-
+        {({ stripe, elements }) => {
+          
           {/* console.log("stripe", stripe); */}
-
+          {/* console.log('stripe' , stripes);
+          console.log('elements', elementss); */}
           return(
-          <form onSubmit={(e) => handleSubmit(e, elements, stripe)}>
+            <>
             <CardElement />
+            
+          <form onSubmit={(e) => handleSubmit(e, elements, stripe)}>
+            {/* { elements ? <h1>Hello stripe</h1> :  <h1>No stripe</h1>} */}
             <br /> <br />
             <div style={{display: 'flex', justifyContent: 'space-between'}}>
               <Button variant="outlined" onClick={backStep}>Back</Button>
               <Button variant="contained" type="submit" color="primary" disabled={! stripe} >{checkoutToken.live.subtotal.formatted_with_symbol}</Button>
             </div>
           </form>
+          </>
           )}}
       </ElementsConsumer>
     </Elements>
