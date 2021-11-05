@@ -72,7 +72,7 @@ const Checkout = ({ cart,order,handleCheckout,errorMessage,refreshCart }) => {
         <Divider className={classes.divider} />
       </div>
       <br />
-      <Button component={Link} to="/" variant="outlined" type="button">Continue Shopping</Button>
+      <Button component={Link} to="/My-e-commerce" variant="outlined" type="button">Continue Shopping</Button>
     </> 
     : (
     <div className={classes.spinner}>

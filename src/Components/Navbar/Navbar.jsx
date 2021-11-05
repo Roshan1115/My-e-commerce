@@ -20,12 +20,12 @@ const Navbar = ({ products, totalItems }) => {
     <>
       <AppBar position="fixed" className={classes.appBar} color="inherit">
         <Toolbar>
-          <Typography component={Link} to="/" variant="h6" className={classes.title} color="inherit">
+          <Typography component={Link} to="/My-e-commerce" variant="h6" className={classes.title} color="inherit">
             <img src={logo} alt="My E-Commerce" height="25px" className={classes.image} />
             My E-Commerce
           </Typography>
           <div className={classes.grow} />
-          { Location.pathname === '/' ? 
+          { (Location.pathname === '/My-e-commerce' || Location.pathname=== '/My-e-commerce/') ? 
           <div className={classes.button}>
             <IconButton component={Link} to="/cart" aria-label='show cart items' color='inherit'>
               <Badge badgeContent={totalItems} color="secondary">

@@ -72,7 +72,7 @@ const App = () => {
         totalItems={cart.total_items}
        />
        <Switch>
-        <Route exact path="/">
+        <Route exact path="/My-e-commerce">
           <Products
           products={products}
           onAddToCart={HandleAddToCart}
